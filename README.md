@@ -19,8 +19,8 @@ tpcMultiRegionFoamCUT is CFD Solver for heat transfer simulations between solid 
 
 ## Description
 Curent OpenFOAM solver is modification of CFD solver [tpcMultiRegionFoam](https://github.com/ThomasKleiner/tpcMultiRegionFoam), first presented and validated in the article [Kleiner 2019](https://www.sciencedirect.com/science/article/pii/S0017931018353055).
+CFD solver was further modified with different condnsation models (models for thermal phase change of pure substances).
 # Condensation Models
-CFD solver was further modified with different condnsation models (models for thermal phase change of pure substances):
 1. LC: first published in [Lee 1980](https://www.scopus.com/pages/publications/84876465720);
 2. KRK: first published in [Kleiner 2019](https://www.sciencedirect.com/science/article/pii/S0017931018353055);
 3. LCA: first published in [Minko, Artemov, Klementiev 2022](https://link.springer.com/article/10.1134/S0040601523030059).
