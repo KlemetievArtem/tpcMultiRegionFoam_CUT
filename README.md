@@ -68,7 +68,8 @@ The increase of vapor velocity intensify heat transfer in accordance with experi
 ## Сonducted simulations
 ### 2D-Simulation of moving pure substance film condensation on a horizontal smooth tube
 
-https://github.com/user-attachments/assets/f55ce8f3-b19b-441b-ab63-6ffcd1e31766
+https://github.com/KlemetievArtem/tpcMultiRegionFoam_CUT/blob/main/fig_vid/U_2_4_6_pink2.gif
+
 
 ### 2D-Simulation of pure substance film condensation on a horizontal smooth tubes bundle
 ![Briggs_Uv04_U_OF](https://github.com/user-attachments/assets/c6071347-3797-4b13-b11a-0f26d2e75bd6)
