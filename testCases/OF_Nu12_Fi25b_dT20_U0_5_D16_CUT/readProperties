@@ -1,0 +1,87 @@
+#!/bin/sh
+cd ${0%/*} || exit 1    # run from this directory
+
+# Source tutorial run functions
+. $WM_PROJECT_DIR/bin/tools/RunFunctions
+
+#kondensateFlag=$(grep -n "kondensate" constant/fluid/transportProperties)
+#kondensateNum=$(echo $kondensateFlag |cut -c31-32);
+#echo $kondensateNum
+#
+#if [ $kondensateNum -eq 24 ]
+#then
+#    echo "vot"
+#fi
+
+#vaporFlag=$(grep -n "vapor" constant/fluid/transportProperties)
+#vaporNum=$(echo $vaporFlag |cut -c31-32);
+#echo $vaporNum
+
+
+nu=$(grep -n "nu" constant/fluid/transportProperties)
+kondensateNuBase=$(echo $nu |cut -c28-37)
+kondensateNuPow=$(echo $nu |cut -c41-41)
+echo "kondensate nu = $kondensateNuBase"
+echo "kondensate nu pow = $kondensateNuPow"
+
+kondensateNu=$(echo "$kondensateNuBase*(1/10)^($kondensateNuPow)" | bc -l)
+echo "kondensate nu = $kondensateNu"
+#vaporNu=$(echo $nu |cut -c88-97)
+
+lambda=$(grep -n "DT" constant/fluid/transportProperties)
+kondensateLambda=$(echo $lambda |cut -c31-37)
+echo "kondensate lambda = $kondensateLambda"
+rho=$(grep -n "rho" constant/fluid/transportProperties)
+kondensateDensity=$(echo $rho |cut -c30-35)
+vaporDensity=$(echo $rho |cut -c83-87)
+echo "kondensate density = $kondensateDensity"
+echo "vapor density = $vaporDensity"
+
+dhv=$(grep -n "dhv" constant/fluid/transportProperties)
+hlg=$(echo $dhv |cut -c90-95)
+echo "hlg = $hlg"
+deltaT=20
+D=0.0125
+g=9.81
+#NusseltDelta=$(echo "sqrt(sqrt(3*$kondensateLambda*$deltaT*$kondensateNu*$D/(2*$g*($kondensateDensity-$vaporDensity)*$hlg)))*1000" | bc -l)
+NusseltAlfa=$(echo "(0.728*sqrt(sqrt($kondensateLambda*$kondensateLambda*$kondensateLambda*$g*($kondensateDensity-$vaporDensity)*$hlg/($deltaT*$kondensateNu*$D))))" | bc -l)
+echo "NusseltAlfa = $NusseltAlfa Wt/(m K)"
+NusseltDelta=$(echo "$kondensateLambda/(0.728*sqrt(sqrt($kondensateLambda*$kondensateLambda*$kondensateLambda*$g*($kondensateDensity-$vaporDensity)*$hlg/($deltaT*$kondensateNu*$D))))*1000" | bc -l)
+
+D=$(echo "$D*1000" | bc)
+echo "D = $D mm"
+echo "NusseltDelta = $NusseltDelta mm"
+
+D_nusseltFilm=$(echo "$D+$NusseltDelta*2" | bc)
+D_Film=$(echo "$D+$NusseltDelta*10" | bc)
+D_Outer=$(echo "$D+$D" | bc)
+R_nusseltFilm=$(echo "($D*0.5+$NusseltDelta)*0.001" | bc)
+
+#echo "./createBlockMeshDict '$D' '$NusseltDelta'"
+#./createBlockMeshDict $D $D_nusseltFilm
+CV_FILM=6
+CV_ALL=83
+LogCV_FILM=1.126162419264
+LogCV_OUTER=4.998047563550684
+#LogCV_OUTER=9.90237178060312
+
+echo "./createBlockMeshDict '$D' '$NusseltDelta' '$CV_FILM' '$CV_ALL' '$LogCV_FILM' '$LogCV_OUTER'"
+./createBlockMeshDict $D $NusseltDelta $CV_FILM $CV_ALL $LogCV_FILM $LogCV_OUTER
+./Allmesh
+
+echo "./createSetFieldsDict '$R_nusseltFilm'"
+./createSetFieldsDict $R_nusseltFilm
+setFields -region fluid
+
+#./Allmesh
+
+#grep -b "vapor" constant/fluid/transportProperties
+
+#while read "y"
+#do 
+#    if [[ "$y" == "nu" ]]; then
+#    #grep "nu" <<< "$y"
+#    #if  then
+#        echo "$y"
+#    fi
+#done < constant/fluid/transportProperties

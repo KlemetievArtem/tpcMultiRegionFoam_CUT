@@ -1,0 +1,67 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  6
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       volScalarField;
+    object      k;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+// ANES
+// U =0.5
+// k=1.5*(0.05*U)^2 = 0.0009
+// L = D = 0.0125
+// Eps = ((0.09)^0.75*k^1.5)/(0.1*L) = 0.00355
+// Cmu = 0.09
+// Omega = k*dens/nut = Eps/(Cmu*k) = 43.8
+// FOAM
+//  nu = 1.4793e-06
+//  Re = U*D/nu = 16900
+//  1e-5*U^2/Re < k < 0.1*U^2/Re  -->  2.36e-9 < k < 2.36e-5
+//  U^2/L < Omega < 10*U^2/L  -->  320 < Omega < 3200
+//
+//
+
+dimensions      [0 2 -2 0 0 0 0];
+
+internalField   uniform 0.001;
+
+boundaryField
+{
+    up
+    {
+    	type  fixedValue;
+    	value $internalField;
+    }
+    down
+    {
+        type            inletOutlet;
+        inletValue      $internalField;
+        value           $internalField;
+    }
+    left
+    {
+        type            zeroGradient;
+    }
+    right
+    {
+        type            zeroGradient;
+    }
+    frontAndBack
+    {
+        type            empty;
+    }
+    defaultFaces
+    {
+        type            empty;
+    }
+}
+
+
+// ************************************************************************* //

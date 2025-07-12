@@ -1,0 +1,124 @@
+#!/bin/sh
+cd ${0%/*} || exit 1    # run from this directory
+
+rm system/fluid/controlDict
+cp head_cpy system/fluid/controlDict
+echo "
+application     multiRegionFoamCond1;
+
+startFrom       latestTime;
+
+startTime       $1;
+
+stopAt          endTime;
+
+endTime         $2;
+
+deltaT          1e-5;
+
+writeControl    adjustableRunTime;
+writeInterval   0.01;
+
+purgeWrite      0;
+
+writeFormat     ascii;
+
+writePrecision  8;
+
+writeCompression on;
+
+timeFormat      general;
+
+timePrecision   8;
+
+runTimeModifiable yes;
+
+
+maxCo           0.1;
+maxFo           0.5;
+maxDi           0.5;
+maxDeltaT	0.001;
+adjustTimeStep  yes;
+
+
+functions
+{
+	/*
+	cartesianToCylindrical
+        {
+            type        cylindrical;
+            libs        (\"libmyFieldFunctionObjects.so\");
+
+            origin      (0.0127 0.0377 0);
+            axis        (0 0 1);
+
+
+            region	fluid;
+            field       U;
+            result      Uradial;
+            
+            writeControl    outputTime;
+            writeInterval   1;
+        }
+        */
+        patchAverage
+	{
+	name    cyl_1;
+	fields  ( T );
+	
+	
+       executeControl  outputTime;
+       writeControl    outputTime;
+       writeInterval   1;
+
+	operation areaAverage;
+	#includeEtc \"caseDicts/postProcessing/surfaceFieldValue/patch.cfg\"
+	}
+	
+	FluidWallHeatFlux{
+            region	fluid;
+            patches     (\"cyl_1\");
+            name    cyl_1;
+            type            myWallHeatFlux;
+            libs            (\"libMyfieldFunctionObjects.so\");
+
+
+            executeControl  outputTime;
+            writeControl    outputTime;
+            writeInterval   1;	
+	}
+        
+}
+
+
+/*
+functions
+{
+	#include	\"patchAverage\"
+	#include	\"residuals\"
+	#include	\"inMassFlow\"
+	#include	\"outMassFlow\"
+	
+	SolidWallHeatFlux{
+            region	tube;
+            //name    tube_to_fluid;
+            type            wallHeatFlux;
+            libs            (\"libfieldFunctionObjects.so\");
+
+            executeControl  writeTime;
+            writeControl    writeTime;	
+	}
+	FluidWallHeatFlux{
+            region	fluid;
+            //name    cyl_1;
+            type            wallHeatFlux;
+            libs            (\"libfieldFunctionObjects.so\");
+
+            executeControl  writeTime;
+            writeControl    writeTime;	
+	}
+	
+}
+*/
+
+// ************************************************************************* //" >> system/fluid/controlDict

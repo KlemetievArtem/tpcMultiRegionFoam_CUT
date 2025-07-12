@@ -1,0 +1,104 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  6
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      controlDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+application     multiRegionFoamCond1;
+
+startFrom       latestTime;
+
+startTime       0.0;
+
+stopAt          endTime;
+
+endTime         1.0;
+
+deltaT          1e-5;
+
+writeControl    adjustableRunTime;
+writeInterval   0.005;
+
+purgeWrite      0;
+
+writeFormat     ascii;
+
+writePrecision  8;
+
+writeCompression on;
+
+timeFormat      general;
+
+timePrecision   8;
+
+runTimeModifiable yes;
+
+
+maxCo           0.2;
+maxFo           0.5;
+maxDi           0.5;
+maxDeltaT	0.001;
+adjustTimeStep  yes;
+
+
+functions
+{
+        
+	FluidWallHeatFlux{
+            region	fluid;
+            patches     ("down");
+            name    down;
+            type            myWallHeatFlux;
+            libs            ("libMyfieldFunctionObjects.so");
+            refT	320.735;
+
+
+            executeControl  outputTime;
+            writeControl    outputTime;
+            writeInterval   1;	
+	}
+}
+
+
+/*
+functions
+{
+	#include	"patchAverage"
+	#include	"residuals"
+	#include	"inMassFlow"
+	#include	"outMassFlow"
+	
+	SolidWallHeatFlux{
+            region	tube;
+            //name    tube_to_fluid;
+            type            wallHeatFlux;
+            libs            ("libfieldFunctionObjects.so");
+
+            executeControl  writeTime;
+            writeControl    writeTime;	
+	}
+	FluidWallHeatFlux{
+            region	fluid;
+            //name    cyl_1;
+            type            wallHeatFlux;
+            libs            ("libfieldFunctionObjects.so");
+
+            executeControl  writeTime;
+            writeControl    writeTime;	
+	}
+	
+}
+*/
+
+// ************************************************************************* //

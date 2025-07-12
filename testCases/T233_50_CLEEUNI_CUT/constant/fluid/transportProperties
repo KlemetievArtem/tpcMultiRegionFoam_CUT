@@ -1,0 +1,52 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  6                                     |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "constant";
+    object      transportProperties;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+phases (kondensate vapor);
+
+phaseChangeTwoPhaseMixtureCond dhvCond;
+//phaseChangeTwoPhaseMixtureCond Merkle;
+
+Pr              [0 0 0 0 0 0 0] 3.11121;
+
+kondensate
+{
+    transportModel  Newtonian;
+    nu              nu [0 2 -1 0 0 0 0] 1.94600939e-07; //Quelle: ASPEN
+    rho             rho [1 -3 0 0 0 0 0] 1278.0;  //Quelle: ASPEN
+    Cp              Cp  [ 0 2 -2 -1 0 0 0 ] 1104.0;
+    DT              DT  [ 1 1 -3 -1 0 0 0 ] 0.08825;
+}
+
+vapor
+{
+    transportModel  Newtonian;
+    nu              nu [0 2 -1 0 0 0 0] 6.0607e-06;        //Quelle: http://www.engineeringtoolbox.com/air-properties-d_156.html;
+    rho             rho [1 -3 0 0 0 0 0] 21.73;
+    Cp              Cp  [ 0 2 -2 -1 0 0 0 ] 726.0;
+    DT              DT  [ 1 1 -3 -1 0 0 0 ] 0.01196;
+}
+
+dhvCondCoeffs
+{
+    dhv		   dhv	   [0 2 -2 0 0 0 0]	208100;
+    Cc		   Cc	   [0 0 0 0 0 0 0]	1;
+    Cv  	   Cv	   [0 0 0 0 0 0 0]	0;
+}
+    Tsat	   Tsat	   [0 0 0 1 0 0 0]	333.15;
+sigma          sigma [1 0 -2 0 0 0 0] 0.01296;
+dhv		   dhv	   [0 2 -2 0 0 0 0]	208100;
+// ************************************************************************* //

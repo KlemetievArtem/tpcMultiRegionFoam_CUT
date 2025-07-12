@@ -1,0 +1,149 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  6
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      controlDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+application     multiRegionFoamCond1;
+
+startFrom       latestTime;
+
+startTime       0.0;
+
+stopAt          endTime;
+
+endTime         1.00;
+
+deltaT          1e-6;
+
+writeControl    adjustableRunTime;
+writeInterval   0.01;
+
+purgeWrite      0;
+
+writeFormat     ascii;
+
+writePrecision  8;
+
+writeCompression on;
+
+timeFormat      general;
+
+timePrecision   8;
+
+runTimeModifiable yes;
+
+
+maxCo           0.05;
+maxFo           1;
+maxDi           1;
+maxDeltaT	0.001;
+adjustTimeStep  yes;
+
+
+functions
+{
+	/*
+	cartesianToCylindrical
+        {
+            type        cylindrical;
+            libs        ("libmyFieldFunctionObjects.so");
+
+            origin      (0.0127 0.0377 0);
+            axis        (0 0 1);
+
+
+            region	fluid;
+            field       U;
+            result      Uradial;
+            
+            writeControl    outputTime;
+            writeInterval   1;
+        }
+        */
+        patchAverage
+	{
+            region	fluid;
+	name    cyl_1;
+	fields  ( T );
+	
+	
+       executeControl  outputTime;
+       writeControl    outputTime;
+       writeInterval   1;
+
+	operation areaAverage;
+	#includeEtc "caseDicts/postProcessing/surfaceFieldValue/patch.cfg"
+	}
+	
+	FluidWallHeatFlux{
+            region	fluid;
+            patches     ("cyl_1");
+            name    cyl_1;
+            type            myWallHeatFlux;
+            libs            ("libMyfieldFunctionObjects.so");
+            refT	320.735;
+
+
+            executeControl  outputTime;
+            writeControl    outputTime;
+            writeInterval   1;	
+	}
+    yPlus1
+    {
+            region	fluid;
+            patches     ("cyl_1");
+            name    cyl_1;
+        type        yPlus;
+        libs        ("libfieldFunctionObjects.so");
+
+            executeControl  outputTime;
+            writeControl    outputTime;
+            writeInterval   1;	
+    }
+        
+}
+
+
+/*
+functions
+{
+	#include	"patchAverage"
+	#include	"residuals"
+	#include	"inMassFlow"
+	#include	"outMassFlow"
+	
+	SolidWallHeatFlux{
+            region	tube;
+            //name    tube_to_fluid;
+            type            wallHeatFlux;
+            libs            ("libfieldFunctionObjects.so");
+
+            executeControl  writeTime;
+            writeControl    writeTime;	
+	}
+	FluidWallHeatFlux{
+            region	fluid;
+            //name    cyl_1;
+            type            wallHeatFlux;
+            libs            ("libfieldFunctionObjects.so");
+
+            executeControl  writeTime;
+            writeControl    writeTime;	
+	}
+	
+}
+*/
+
+// ************************************************************************* //

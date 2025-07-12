@@ -1,0 +1,28 @@
+#!/bin/sh
+cd ${0%/*} || exit 1    # run from this directory
+
+rm system/fluid/setFieldsDict
+cp head_setFields system/fluid/setFieldsDict
+echo "
+
+
+defaultFieldValues
+(
+    volScalarFieldValue alpha.kondensate 0
+);
+
+regions
+(
+    cylinderToCell
+    {
+    	p1 (0.04 0.08 0.0);
+    	p2 (0.04 0.08 0.5);
+    	radius $1;
+        fieldValues
+        (
+            volScalarFieldValue alpha.kondensate 1
+        );
+    }
+);
+
+// ************************************************************************* // " >> system/fluid/setFieldsDict

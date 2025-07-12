@@ -1,0 +1,66 @@
+#!/bin/sh
+cd ${0%/*} || exit 1    # run from this directory
+
+startTime0=0
+startTime1=0
+startTime2=0
+endTime0=1
+endTime1=0
+endTime2=0
+step=1
+
+# Source tutorial run functions
+. $WM_PROJECT_DIR/bin/tools/RunFunctions
+
+echo
+echo "creating files for paraview post-processing"
+#paraFoam -touchAll
+echo
+
+# Decompose
+#runApplication decomposePar
+#rm log.decomposePar
+
+# Run
+while [ $startTime1 -lt 11 ]
+do
+	if [ $endTime0 -eq 10 ]
+	then
+		endTime0=0
+		endTime1=$(( $endTime1 +$step ))
+	fi
+	if [ $endTime1 -eq 10 ]
+	then
+		endTime1=0
+		endTime2=$(( $endTime2 +$step ))
+	fi
+	if [ $startTime0 -eq 10 ]
+	then
+		startTime0=0
+		startTime1=$(( $startTime1 +$step ))
+	fi
+	if [ $startTime1 -eq 10 ]
+	then
+		startTime1=0
+		startTime2=$(( $startTime2 +$step ))
+	fi
+	echo "./createControlDict $startTime2.$startTime1$startTime0 $endTime2.$endTime1$endTime0"
+	./createControlDict $startTime2.$startTime1$startTime0 $endTime2.$endTime1$endTime0
+	#runParallel tpcUnoRegionFoam_pimple11
+	tpcUnoRegionFoam_pimple15
+	if [ $endTime2 -eq $1 ]
+	then
+		break
+	fi
+	rm log.tpcUnoRegionFoam_pimple15
+	
+	
+	endTime0=$(( $endTime0 +$step ))
+	startTime0=$(( $startTime0 +$step ))
+done
+
+
+
+# Reconstruct
+#runApplication reconstructPar
+#rm log.reconstructPar

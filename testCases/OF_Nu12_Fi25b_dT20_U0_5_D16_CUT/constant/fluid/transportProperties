@@ -1,0 +1,54 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  6                                     |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "constant";
+    object      transportProperties;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+phases (kondensate vapor);
+
+phaseChangeTwoPhaseMixtureCond dhvCond;
+//phaseChangeTwoPhaseMixtureCond Merkle;
+
+Pr              [0 0 0 0 0 0 0] 6.99307;
+
+kondensate
+{
+    transportModel  Newtonian;
+    nu              nu [0 2 -1 0 0 0 0] 3.32774000e-07; //Quelle: ASPEN
+    rho             rho [1 -3 0 0 0 0 0] 1508.2;  //Quelle: ASPEN
+    Cp              Cp  [ 0 2 -2 -1 0 0 0 ] 940.37;
+    DT              DT  [ 1 1 -3 -1 0 0 0 ] 0.06749;
+    Pr              [0 0 0 0 0 0 0] 6.99307;
+}
+
+vapor
+{
+    transportModel  Newtonian;
+    nu              nu [0 2 -1 0 0 0 0] 1.4793e-06;        //Quelle: http://www.engineeringtoolbox.com/air-properties-d_156.html;
+    rho             rho [1 -3 0 0 0 0 0] 7.4244;
+    Cp              Cp  [ 0 2 -2 -1 0 0 0 ] 691.43;
+    DT              DT  [ 1 1 -3 -1 0 0 0 ] 0.00949;
+    Pr              [0 0 0 0 0 0 0] 0.80021;
+}
+
+dhvCondCoeffs
+{
+    dhv		   dhv	   [0 2 -2 0 0 0 0]	144320;
+    Cc		   Cc	   [0 0 0 0 0 0 0]	1;
+    Cv  	   Cv	   [0 0 0 0 0 0 0]	0;
+}
+    Tsat	   Tsat	   [0 0 0 1 0 0 0]	320.735;
+sigma          sigma [1 0 -2 0 0 0 0] 0.014698;
+dhv		   dhv	   [0 2 -2 0 0 0 0]	144320;
+// ************************************************************************* //

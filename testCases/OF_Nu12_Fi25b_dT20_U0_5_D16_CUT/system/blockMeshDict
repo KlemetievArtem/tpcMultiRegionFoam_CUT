@@ -1,0 +1,366 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  6
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      controlDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+convertToMeters 0.001;
+
+TubeD 12.5000;
+NusseltFilmTchikness 10;
+
+TubeDiag #calc "sqrtf(sqr($TubeD/2.0)/2.0)";
+NusseltFilmD #calc "$TubeD+2.0/117*$NusseltFilmTchikness";
+NusseltFilmDiag #calc "sqrtf(sqr($NusseltFilmD/2.0)/2.0)";
+FilmD #calc "$TubeD+2.0*$NusseltFilmTchikness";
+FilmDiag #calc "sqrtf(sqr($FilmD/2.0)/2.0)";
+OuterD #calc "1.3*$TubeD";
+OuterDiag #calc "sqrtf(sqr($OuterD/2.0)/2.0)";
+
+Xbeg 0;
+Xend 80.0; // 250
+Xmid #calc "$Xend/2.0";
+Xmid_m_Tube #calc "$Xmid-$TubeDiag"; // 118.264808;
+Xmid_m_NuFilm #calc "$Xmid-$NusseltFilmDiag"; // 116.161165;
+Xmid_m_Film #calc "$Xmid-$FilmDiag";
+Xmid_m_Outer #calc "$Xmid-$OuterDiag";
+
+Xmid_p_Tube #calc "$Xmid+$TubeDiag"; // 131.735192;
+Xmid_p_NuFilm #calc "$Xmid+$NusseltFilmDiag"; // 133.838835;
+Xmid_p_Film #calc "$Xmid+$FilmDiag";
+Xmid_p_Outer #calc "$Xmid+$OuterDiag";
+
+Ybeg 0;
+Yend 80.0; //250
+Ymid #calc "$Yend/2.0";
+
+Ymid_m_Tube #calc "$Ymid-$TubeDiag"; // 118.264808; //29.921825; // 
+Ymid_m_NuFilm #calc "$Ymid-$NusseltFilmDiag"; // 116.161165; // 
+Ymid_m_Film #calc "$Ymid-$FilmDiag";
+Ymid_m_Outer #calc "$Ymid-$OuterDiag";
+
+Ymid_p_Tube #calc "$Ymid+$TubeDiag"; // 131.735192; //45.478175; // 
+Ymid_p_NuFilm #calc "$Ymid+$NusseltFilmDiag"; // 133.838835; // 
+Ymid_p_Film #calc "$Ymid+$FilmDiag";
+Ymid_p_Outer #calc "$Ymid+$OuterDiag";
+
+Zbeg 0;
+Zend 0.01; // 250
+
+Arc_Bot_TubeD #calc "$Ymid-$TubeD/2.0";
+Arc_Bot_NusseltFilmD #calc "$Ymid-$NusseltFilmD/2.0";
+Arc_Bot_FilmD #calc "$Ymid-$FilmD/2.0";
+Arc_Bot_OuterD #calc "$Ymid-$OuterD/2.0";
+
+Arc_Right_TubeD #calc "$Xmid+$TubeD/2.0";
+Arc_Right_NusseltFilmD #calc "$Xmid+$NusseltFilmD/2.0";
+Arc_Right_FilmD #calc "$Xmid+$FilmD/2.0";
+Arc_Right_OuterD #calc "$Xmid+$OuterD/2.0";
+
+Arc_Top_TubeD #calc "$Ymid+$TubeD/2.0";
+Arc_Top_NusseltFilmD #calc "$Ymid+$NusseltFilmD/2.0";
+Arc_Top_FilmD #calc "$Ymid+$FilmD/2.0";
+Arc_Top_OuterD #calc "$Ymid+$OuterD/2.0";
+
+Arc_Left_TubeD #calc "$Xmid-$TubeD/2.0";
+Arc_Left_NusseltFilmD #calc "$Xmid-$NusseltFilmD/2.0";
+Arc_Left_FilmD #calc "$Xmid-$FilmD/2.0";
+Arc_Left_OuterD #calc "$Xmid-$OuterD/2.0";
+
+vertices
+(    
+    ($Xbeg $Ybeg $Zbeg)
+    ($Xmid_m_Outer $Ybeg $Zbeg)
+    ($Xmid_m_Outer $Ymid_m_Outer $Zbeg)
+    ($Xbeg $Ymid_m_Outer $Zbeg)
+    ($Xmid_p_Outer $Ybeg $Zbeg)
+    ($Xmid_p_Outer $Ymid_m_Outer $Zbeg)
+    ($Xend $Ybeg $Zbeg)
+    ($Xend $Ymid_m_Outer $Zbeg)
+    ($Xend $Ymid_p_Outer $Zbeg)
+    ($Xmid_p_Outer $Ymid_p_Outer $Zbeg)
+    ($Xmid_p_Film $Ymid_p_Film $Zbeg)
+    ($Xmid_p_Film $Ymid_m_Film $Zbeg)
+    ($Xmid_p_NuFilm $Ymid_p_NuFilm $Zbeg)
+    ($Xmid_p_NuFilm $Ymid_m_NuFilm $Zbeg)
+    ($Xmid_p_Tube $Ymid_p_Tube $Zbeg)
+    ($Xmid_p_Tube $Ymid_m_Tube $Zbeg)
+    ($Xmid_m_Tube $Ymid_m_Tube $Zbeg)
+    ($Xmid_m_NuFilm $Ymid_m_NuFilm $Zbeg)
+    ($Xmid_m_Film $Ymid_m_Film $Zbeg)
+    ($Xmid_m_Film $Ymid_p_Film $Zbeg)
+    ($Xmid_m_Outer $Ymid_p_Outer $Zbeg)
+    ($Xbeg $Ymid_p_Outer $Zbeg)
+    ($Xmid_m_NuFilm $Ymid_p_NuFilm $Zbeg)
+    ($Xmid_m_Tube $Ymid_p_Tube $Zbeg)
+    ($Xend $Yend $Zbeg)
+    ($Xmid_p_Outer $Yend $Zbeg)
+    ($Xmid_m_Outer $Yend $Zbeg)
+    ($Xbeg $Yend $Zbeg)
+    
+    ($Xbeg $Ybeg $Zend)
+    ($Xmid_m_Outer $Ybeg $Zend)
+    ($Xmid_m_Outer $Ymid_m_Outer $Zend)
+    ($Xbeg $Ymid_m_Outer $Zend)
+    ($Xmid_p_Outer $Ybeg $Zend)
+    ($Xmid_p_Outer $Ymid_m_Outer $Zend)
+    ($Xend $Ybeg $Zend)
+    ($Xend $Ymid_m_Outer $Zend)
+    ($Xend $Ymid_p_Outer $Zend)
+    ($Xmid_p_Outer $Ymid_p_Outer $Zend)
+    ($Xmid_p_Film $Ymid_p_Film $Zend)
+    ($Xmid_p_Film $Ymid_m_Film $Zend)
+    ($Xmid_p_NuFilm $Ymid_p_NuFilm $Zend)
+    ($Xmid_p_NuFilm $Ymid_m_NuFilm $Zend)
+    ($Xmid_p_Tube $Ymid_p_Tube $Zend)
+    ($Xmid_p_Tube $Ymid_m_Tube $Zend)
+    ($Xmid_m_Tube $Ymid_m_Tube $Zend)
+    ($Xmid_m_NuFilm $Ymid_m_NuFilm $Zend)
+    ($Xmid_m_Film $Ymid_m_Film $Zend)
+    ($Xmid_m_Film $Ymid_p_Film $Zend)
+    ($Xmid_m_Outer $Ymid_p_Outer $Zend)
+    ($Xbeg $Ymid_p_Outer $Zend)
+    ($Xmid_m_NuFilm $Ymid_p_NuFilm $Zend)
+    ($Xmid_m_Tube $Ymid_p_Tube $Zend)
+    ($Xend $Yend $Zend)
+    ($Xmid_p_Outer $Yend $Zend)
+    ($Xmid_m_Outer $Yend $Zend)
+    ($Xbeg $Yend $Zend)
+
+);
+
+
+
+CV_Fi_total 512;
+
+// From Mathcad we calculate (using several assumptions):
+CV_Fi_Bot 200;
+CV_Fi_Top 100;
+CV_Fi_Left 150;
+CV_Fi_Right 150;
+
+CV_ExpRate_Right 1; //0.498;
+CV_ExpRate_Left 1; //0.498;
+CV_ExpRate_Left_r 1;\#calc "1.0/$CV_ExpRate_Left ";
+CV_ExpRate_Top 5; //0.295;
+CV_ExpRate_Top_r #calc "1.0/$CV_ExpRate_Top ";
+CV_ExpRate_Bot 1; //0.909;
+CV_ExpRate_Bot_r 1;\#calc "1.0/$CV_ExpRate_Bot ";
+
+
+
+
+
+CV_Finum_4_sm 30;
+
+
+
+CV_R_NusseltFilm 1;
+
+
+MinkoLogRate_Film 1.02;
+MinkoLogRate_Outer 1.1;
+// From Mathcad we calculate (using several assumptions):
+CV_R #calc "117-1 ";
+CV_R_Outer #calc "1.2189944199947573-117 ";
+CV_R_Film_Ratio 5.90237178060312 ; //#calc " std::pow($MinkoLogRate_Film,($CV_R - 1)) ";
+CV_R_Outer_Ratio  ; //#calc " std::pow($MinkoLogRate_Outer,($CV_R_Outer - 1)) ";
+CV_R_Outer_Ratio_r #calc "1.0/$CV_R_Outer_Ratio ";
+CV_R_Film_Ratio_r #calc "1.0/$CV_R_Film_Ratio ";
+
+
+
+CV_X_side 50;
+CV_Y_top 35;
+CV_Y_top_Ratio 20;
+CV_X_side_Ratio 40;
+CV_X_side_Ratio_r #calc "1.0/$CV_X_side_Ratio ";
+//CV_Y_bottom #calc "$CV_Y_top*$Ymid_m_Outer/($Yend-$Ymid_p_Outer) ";
+CV_Y_bottom 200;
+CV_Y_bottom_Ratio 3;
+CV_Y_bottom_Ratio_r #calc "1.0/$CV_Y_bottom_Ratio ";
+
+
+blocks
+(
+    hex (0 1 2 3 28 29 30 31) ($CV_X_side $CV_Y_bottom 1) simpleGrading ($CV_X_side_Ratio_r $CV_Y_bottom_Ratio_r 1)
+    hex (1 4 5 2 29 32 33 30) ($CV_Fi_Bot $CV_Y_bottom 1) simpleGrading (( (0.5 0.5 $CV_ExpRate_Bot_r) (0.5 0.5 $CV_ExpRate_Bot) ) $CV_Y_bottom_Ratio_r 1) //Fi_Bot
+    hex (4 6 7 5 32 34 35 33) ($CV_X_side $CV_Y_bottom 1) simpleGrading ($CV_X_side_Ratio $CV_Y_bottom_Ratio_r 1)
+    hex (5 7 8 9 33 35 36 37) ($CV_X_side $CV_Fi_Right 1) simpleGrading ($CV_X_side_Ratio $CV_ExpRate_Right 1) //Fi_Right
+    hex (5 9 10 11 33 37 38 39) ($CV_Fi_Right $CV_R_Outer 1) simpleGrading ($CV_ExpRate_Right $CV_R_Outer_Ratio_r 1) //Fi_Right //Outer
+    hex (11 10 12 13 39 38 40 41) ($CV_Fi_Right $CV_R 1) simpleGrading ($CV_ExpRate_Right $CV_R_Film_Ratio_r 1) //Fi_Right //Film
+    hex (13 12 14 15 41 40 42 43) ($CV_Fi_Right $CV_R_NusseltFilm 1) simpleGrading ($CV_ExpRate_Right 1 1) //Fi_Right //NusseltFilm
+    hex (17 13 15 16 45 41 43 44) ($CV_Fi_Bot $CV_R_NusseltFilm 1) simpleGrading (( (0.5 0.5 $CV_ExpRate_Bot_r) (0.5 0.5 $CV_ExpRate_Bot) ) 1 1) //Fi_Bot //NusseltFilm
+    hex (18 11 13 17 46 39 41 45) ($CV_Fi_Bot $CV_R 1) simpleGrading (( (0.5 0.5 $CV_ExpRate_Bot_r) (0.5 0.5 $CV_ExpRate_Bot) ) $CV_R_Film_Ratio_r 1) //Fi_Bot //Film
+    hex (2 5 11 18 30 33 39 46) ($CV_Fi_Bot $CV_R_Outer 1) simpleGrading (( (0.5 0.5 $CV_ExpRate_Bot_r) (0.5 0.5 $CV_ExpRate_Bot) ) $CV_R_Outer_Ratio_r 1) //Fi_Bot //Outer
+    hex (20 2 18 19 48 30 46 47) ($CV_Fi_Left $CV_R_Outer 1) simpleGrading ($CV_ExpRate_Left_r $CV_R_Outer_Ratio_r 1) //Fi_Left //Outer
+    hex (3 2 20 21 31 30 48 49) ($CV_X_side $CV_Fi_Left 1) simpleGrading ($CV_X_side_Ratio_r $CV_ExpRate_Left 1) //Fi_Left
+    hex (19 18 17 22 47 46 45 50) ($CV_Fi_Left $CV_R 1) simpleGrading ($CV_ExpRate_Left_r $CV_R_Film_Ratio_r 1) //Fi_Left //Film
+    hex (22 17 16 23 50 45 44 51) ($CV_Fi_Left $CV_R_NusseltFilm 1) simpleGrading ($CV_ExpRate_Left_r 1 1) //Fi_Left //NusseltFilm
+    hex (23 14 12 22 51 42 40 50) ($CV_Fi_Top $CV_R_NusseltFilm 1) simpleGrading (( (0.5 0.5 $CV_ExpRate_Top) (0.5 0.5 $CV_ExpRate_Top_r) ) 1 1) //Fi_Top //NusseltFilm
+    hex (22 12 10 19 50 40 38 47) ($CV_Fi_Top $CV_R 1) simpleGrading (( (0.5 0.5 $CV_ExpRate_Top) (0.5 0.5 $CV_ExpRate_Top_r) ) $CV_R_Film_Ratio 1) //Fi_Top //Film
+    hex (19 10 9 20 47 38 37 48) ($CV_Fi_Top $CV_R_Outer 1) simpleGrading (( (0.5 0.5 $CV_ExpRate_Top) (0.5 0.5 $CV_ExpRate_Top_r) ) $CV_R_Outer_Ratio 1) //Fi_Top //Outer
+    hex (9 8 24 25 37 36 52 53) ($CV_X_side $CV_Y_top 1) simpleGrading ($CV_X_side_Ratio $CV_Y_top_Ratio 1)
+    hex (20 9 25 26 48 37 53 54) ($CV_Fi_Top $CV_Y_top 1) simpleGrading (( (0.5 0.5 $CV_ExpRate_Top) (0.5 0.5 $CV_ExpRate_Top_r) ) $CV_Y_top_Ratio 1) //Fi_Top
+    hex (21 20 26 27 49 48 54 55) ($CV_X_side $CV_Y_top 1) simpleGrading ($CV_X_side_Ratio_r $CV_Y_top_Ratio 1)
+    
+);
+
+
+edges
+(
+    arc 2 5 ($Xmid $Arc_Bot_OuterD $Zbeg)
+    arc 5 9 ($Arc_Right_OuterD $Ymid $Zbeg)
+    arc 9 20 ($Xmid $Arc_Top_OuterD $Zbeg)
+    arc 20 2 ($Arc_Left_OuterD $Ymid $Zbeg)    
+    arc 18 11 ($Xmid $Arc_Bot_FilmD $Zbeg)
+    arc 11 10 ($Arc_Right_FilmD $Ymid $Zbeg)
+    arc 10 19 ($Xmid $Arc_Top_FilmD $Zbeg)
+    arc 19 18 ($Arc_Left_FilmD $Ymid $Zbeg)  
+    arc 17 13 ($Xmid $Arc_Bot_NusseltFilmD $Zbeg)
+    arc 13 12 ($Arc_Right_NusseltFilmD $Ymid $Zbeg)
+    arc 12 22 ($Xmid $Arc_Top_NusseltFilmD $Zbeg)
+    arc 22 17 ($Arc_Left_NusseltFilmD $Ymid $Zbeg)    
+    arc 16 15 ($Xmid $Arc_Bot_TubeD $Zbeg)
+    arc 15 14 ($Arc_Right_TubeD $Ymid $Zbeg)
+    arc 14 23 ($Xmid $Arc_Top_TubeD $Zbeg)
+    arc 23 16 ($Arc_Left_TubeD $Ymid $Zbeg)
+    
+    arc 30 33 ($Xmid $Arc_Bot_OuterD $Zend)
+    arc 33 37 ($Arc_Right_OuterD $Ymid $Zend)
+    arc 37 48 ($Xmid $Arc_Top_OuterD $Zend)
+    arc 48 30 ($Arc_Left_OuterD $Ymid $Zend)    
+    arc 46 39 ($Xmid $Arc_Bot_FilmD $Zend)
+    arc 39 38 ($Arc_Right_FilmD $Ymid $Zend)
+    arc 38 47 ($Xmid $Arc_Top_FilmD $Zend)
+    arc 47 46 ($Arc_Left_FilmD $Ymid $Zend)  
+    arc 45 41 ($Xmid $Arc_Bot_NusseltFilmD $Zend)
+    arc 41 40 ($Arc_Right_NusseltFilmD $Ymid $Zend)
+    arc 40 50 ($Xmid $Arc_Top_NusseltFilmD $Zend)
+    arc 50 45 ($Arc_Left_NusseltFilmD $Ymid $Zend)    
+    arc 44 43 ($Xmid $Arc_Bot_TubeD $Zend)
+    arc 43 42 ($Arc_Right_TubeD $Ymid $Zend)
+    arc 42 51 ($Xmid $Arc_Top_TubeD $Zend)
+    arc 51 44 ($Arc_Left_TubeD $Ymid $Zend)
+    
+);
+
+boundary
+(
+    left
+    {
+        type patch;
+        faces
+        (
+            (3 0 28 31)
+            (21 3 31 49)
+            (27 21 49 55)
+        );
+    }
+    right
+    {
+        type patch;
+        faces
+        (
+            (6 7 35 34)
+            (7 8 36 35)
+            (8 24 52 36)
+        );
+    }
+    outlet
+    {
+        type patch;
+        faces
+        (
+            (0 1 29 28)
+            (1 4 32 29)
+            (4 6 34 32)
+        );
+    }
+    inlet
+    {
+        type patch;
+        faces
+        (
+            (24 25 53 52)
+            (25 26 54 53)
+            (26 27 55 54)
+        );
+    }
+    cyl_1
+    {
+        type wall;
+        faces
+        (
+            (16 15 43 44)
+            (15 14 42 43)
+            (14 23 51 42)
+            (23 16 44 51)
+        );
+    }
+    frontAndBack
+    {
+        type empty;
+        faces
+        (
+            (0 3 2 1)
+            (1 2 5 4)
+            (4 5 7 6)
+            (5 9 8 7)
+            (11 10 9 5)
+            (13 12 10 11)
+            (15 14 12 13)
+            (17 16 15 13)
+            (18 17 13 11)
+            (2 18 11 5)
+            (2 20 19 18)
+            (3 21 20 2)
+            (18 19 22 17)
+            (17 22 23 16)
+            (23 22 12 14)
+            (22 19 10 12)
+            (19 20 9 10)
+            (9 25 24 8)
+            (20 26 25 9)
+            (21 27 26 20)
+            
+            (28 31 30 29)
+            (29 30 33 32)
+            (32 33 35 34)
+            (33 37 36 35)
+            (39 38 37 33)
+            (41 40 38 39)
+            (43 42 40 41)
+            (45 44 43 41)
+            (46 45 41 39)
+            (30 46 39 33)
+            (30 48 47 46)
+            (31 49 48 30)
+            (46 47 50 45)
+            (45 50 51 44)
+            (51 50 40 42)
+            (50 47 38 40)
+            (47 48 37 38)
+            (37 53 52 36)
+            (48 54 53 37)
+            (49 55 54 48)
+        );
+    }
+);
+
+mergePatchPairs
+(
+);
+
+// ************************************************************************* // 

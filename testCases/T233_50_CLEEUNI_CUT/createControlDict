@@ -1,0 +1,80 @@
+#!/bin/sh
+cd ${0%/*} || exit 1    # run from this directory
+
+rm system/controlDict
+cp head_cpy system/controlDict
+echo "
+application     multiRegionFoamCond1;
+
+startFrom       latestTime;
+
+startTime       $1;
+
+stopAt          endTime;
+
+endTime         $2;
+
+deltaT          1e-5;
+
+writeControl    adjustableRunTime;
+writeInterval   0.01;
+
+purgeWrite      0;
+
+writeFormat     ascii;
+
+writePrecision  8;
+
+writeCompression on;
+
+timeFormat      general;
+
+timePrecision   8;
+
+runTimeModifiable yes;
+
+
+maxCo           0.2;
+maxFo           0.5;
+maxDi           0.5;
+maxDeltaT	0.001;
+adjustTimeStep  yes;
+
+
+functions
+{
+        
+}
+
+
+/*
+functions
+{
+	#include	\"patchAverage\"
+	#include	\"residuals\"
+	#include	\"inMassFlow\"
+	#include	\"outMassFlow\"
+	
+	SolidWallHeatFlux{
+            region	tube;
+            //name    tube_to_fluid;
+            type            wallHeatFlux;
+            libs            (\"libfieldFunctionObjects.so\");
+
+            executeControl  writeTime;
+            writeControl    writeTime;	
+	}
+	FluidWallHeatFlux{
+            region	fluid;
+            //name    cyl_1;
+            type            wallHeatFlux;
+            libs            (\"libfieldFunctionObjects.so\");
+
+            executeControl  writeTime;
+            writeControl    writeTime;	
+	}
+	
+}
+*/
+
+// ************************************************************************* //" >> system/controlDict
