@@ -33,7 +33,7 @@ Model from [Da Riva,2009](https://asmedigitalcollection.asme.org/MNHT/proceeding
  - Stefan proplem
  - vapor condensation on vertical plane
  - condensation of Stagnant or Moving vapor on horizontal cylinder
- - cross-verification of LCA condenstion model using OpenFOAM, Ansys Fluent and ANES perfermed in [Minko, Artemov, Klementiev 2025](). 
+ - cross-verification of LCA condenstion model using OpenFOAM, Ansys Fluent and [ANES](http://anes.ch12655.tmweb.ru/index.php/primery) perfermed in [Minko, Artemov, Klementiev 2025](). 
 
 # Citing This Work
 If using the LCA condensation model or concepts from this repository leads to publication, please cite: [Minko, Artemov, Klementiev 2022](https://link.springer.com/article/10.1134/S0040601523030059) 
