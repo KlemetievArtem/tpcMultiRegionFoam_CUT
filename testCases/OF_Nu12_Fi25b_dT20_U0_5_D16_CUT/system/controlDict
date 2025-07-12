@@ -15,7 +15,7 @@ FoamFile
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-application     multiRegionFoamCond1;
+application     tpcMultiRegionFoam_CUT;
 
 startFrom       latestTime;
 
