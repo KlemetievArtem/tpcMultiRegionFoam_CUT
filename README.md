@@ -79,7 +79,7 @@ We welcome contributions, particularly for:
  - Turbulence model improvements
  - Additional validation cases for LCA condensation model
  - Performance optimizations
- - solver stability
+ - Solver stability
 
 Please submit pull requests or open issues to discuss potential enhancements.
 
