@@ -1,0 +1,3 @@
+myWallHeatFlux/myWallHeatFlux.C
+
+LIB = $(FOAM_USER_LIBBIN)/libMyfieldFunctionObjects

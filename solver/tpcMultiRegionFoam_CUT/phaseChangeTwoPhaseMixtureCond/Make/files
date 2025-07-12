@@ -1,0 +1,5 @@
+phaseChangeTwoPhaseMixtureCond/phaseChangeTwoPhaseMixtureCond.C
+phaseChangeTwoPhaseMixtureCond/newPhaseChangeTwoPhaseMixtureCond.C
+dhvCond/dhvCond.C
+
+LIB = $(FOAM_USER_LIBBIN)/libphaseChangeTwoPhaseMixtureCond
