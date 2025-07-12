@@ -14,7 +14,7 @@ echo
 runApplication decomposePar -allRegions
 
 # Run
-runParallel tpcUnoRegionFoam
+runParallel tpcMultiRegionFoam_CUT
 
 # Reconstruct
 runApplication reconstructPar -allRegions
