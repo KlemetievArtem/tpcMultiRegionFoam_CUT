@@ -25,6 +25,7 @@ CFD solver was further modified with different condnsation models (models for th
 1. LC: first published in [Lee 1980](https://www.scopus.com/pages/publications/84876465720);
 2. KRK: first published in [Kleiner 2019](https://www.sciencedirect.com/science/article/pii/S0017931018353055);
 3. LCA: first published in [Minko, Artemov, Klementiev 2022](https://link.springer.com/article/10.1134/S0040601523030059).
+
 Linearization of (condensation) source term in energy conservation equation is performed.
 # Turbulence Model
 Model from [Da Riva,2009](https://asmedigitalcollection.asme.org/MNHT/proceedings/MNHMT2009/43901/139/334977) for dampenning turbulence in condensate phase is implemented.
