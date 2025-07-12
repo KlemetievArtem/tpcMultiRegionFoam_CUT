@@ -61,7 +61,7 @@ Two test cases, are provided
 ![Stepfan](https://github.com/KlemetievArtem/tpcMultiRegionFoam_CUT/blob/main/fig_vid/Stefane.png)
 
 # 2D-Simulation of pure substance film condensation on a horizontal smooth tube
-![droplet_new]([https://github.com/user-attachments/assets/d43b097b-2e4e-4778-8966-558e311556b7](https://github.com/KlemetievArtem/tpcMultiRegionFoam_CUT/blob/main/fig_vid/droplet_new.gif))
+![droplet_new](https://github.com/KlemetievArtem/tpcMultiRegionFoam_CUT/blob/main/fig_vid/droplet_new.gif)
 
 The increase of vapor velocity intensify heat transfer in accordance with experiment.
 
