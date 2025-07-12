@@ -1,13 +1,13 @@
 # (IN PROCESS)
 
 # tpcMultiRegionFoam_CUT &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;&nbsp;
-tpcMultiRegionFoam solver with added condensation models, turbulence model, post-processing functions, and fixes
+tpcMultiRegionFoamCUT solver is modification of [tpcMultiRegionFoam](https://github.com/ThomasKleiner/tpcMultiRegionFoam) with added condensation models, turbulence model, post-processing functions, and fixes
 
 
  ![itf](https://github.com/user-attachments/assets/2e6c9155-2388-4bb3-9853-0c021b6443c3)
 
-CFD Solver for heat transfer simulations between solid and fluid regions with implemented models for thermal phase change of pure substances in fluid regions (Lee model - LC; Kleiner, Rehfeldt, Klein model - KRK; Lee model with AUTOMATIC constant calculation (Minko model) - LCA) and turbulence model in vapor phase. 
-Algorithm is tested and validated for moving vapor condensation.
+CFD Solver for heat transfer simulations between solid and fluid regions with implemented models for thermal phase change of pure substances in fluid regions (Lee model - LC; Kleiner, Rehfeldt, Klein model - KRK; Lee model with AUTOMATIC constant calculation (Minko model) - LCA), turbulence model in vapor phase and calculation of wallHeatFluxes on patches. 
+Algorithm is tested and validated for Stefan proplem, vapor condensation on vertical plane and horizontal cylinder and moving vapor condensation.
 
 [National Research University "Moscow Power Engineering Institute"](https://mpei.ru/lang/en/Pages/default.aspx), [Dept. of Engineering Thermophysics named after Vladimir Kirillin​](https://thermophys.ru/)
 
