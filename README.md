@@ -8,8 +8,8 @@ tpcMultiRegionFoamCUT solver is modification of [tpcMultiRegionFoam](https://git
  - Various improvements and fixes
 
 tpcMultiRegionFoamCUT is CFD Solver for heat transfer simulations between solid and fluid regions with implemented models for thermal phase change of pure substances in fluid regions (Lee model - LC; Kleiner, Rehfeldt, Klein model - KRK; Lee model with AUTOMATIC constant calculation (Minko model) - LCA), turbulence model in vapor phase and calculation of wallHeatFluxes on patches. 
+ ![itf](https://github.com/KlemetievArtem/tpcMultiRegionFoam_CUT/blob/main/fig_vid/TPD.jpg)
 
- ![itf](https://github.com/user-attachments/assets/2e6c9155-2388-4bb3-9853-0c021b6443c3)
 
 [National Research University "Moscow Power Engineering Institute"](https://mpei.ru/lang/en/Pages/default.aspx), [Dept. of Engineering Thermophysics named after Vladimir Kirillin​](https://thermophys.ru/)
 
@@ -58,10 +58,10 @@ Two test cases, are provided
 
 # Stefan proplem
 
-<img width="988" height="580" alt="Stefane" src="https://github.com/user-attachments/assets/74d0dbc7-b8e5-4574-95fa-a604d701a639" />
+![Stepfan](https://github.com/KlemetievArtem/tpcMultiRegionFoam_CUT/blob/main/fig_vid/Stefane.png)
 
 # 2D-Simulation of pure substance film condensation on a horizontal smooth tube
-![droplet_new](https://github.com/user-attachments/assets/d43b097b-2e4e-4778-8966-558e311556b7)
+![droplet_new]([https://github.com/user-attachments/assets/d43b097b-2e4e-4778-8966-558e311556b7](https://github.com/KlemetievArtem/tpcMultiRegionFoam_CUT/blob/main/fig_vid/droplet_new.gif))
 
 The increase of vapor velocity intensify heat transfer in accordance with experiment.
 
@@ -72,7 +72,7 @@ The increase of vapor velocity intensify heat transfer in accordance with experi
 
 
 ### 2D-Simulation of pure substance film condensation on a horizontal smooth tubes bundle
-![Briggs_Uv04_U_OF](https://github.com/user-attachments/assets/c6071347-3797-4b13-b11a-0f26d2e75bd6)
+![Briggs_Uv04_U_OF](https://github.com/KlemetievArtem/tpcMultiRegionFoam_CUT/blob/main/fig_vid/Briggs_Uv04_U_OF.gif)
 
 ## Contributing
 We welcome contributions, particularly for:
