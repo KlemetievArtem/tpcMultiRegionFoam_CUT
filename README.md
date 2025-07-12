@@ -8,6 +8,7 @@ tpcMultiRegionFoamCUT solver is modification of [tpcMultiRegionFoam](https://git
  - Various improvements and fixes
 
 tpcMultiRegionFoamCUT is CFD Solver for heat transfer simulations between solid and fluid regions with implemented models for thermal phase change of pure substances in fluid regions (Lee model - LC; Kleiner, Rehfeldt, Klein model - KRK; Lee model with AUTOMATIC constant calculation (Minko model) - LCA), turbulence model in vapor phase and calculation of wallHeatFluxes on patches. 
+
  ![itf](https://github.com/KlemetievArtem/tpcMultiRegionFoam_CUT/blob/main/fig_vid/TPD.jpg)
 
 
