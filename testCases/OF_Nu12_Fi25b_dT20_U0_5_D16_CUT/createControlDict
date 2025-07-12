@@ -4,7 +4,7 @@ cd ${0%/*} || exit 1    # run from this directory
 rm system/fluid/controlDict
 cp head_cpy system/fluid/controlDict
 echo "
-application     multiRegionFoamCond1;
+application     tpcMultiRegionFoam_CUT;
 
 startFrom       latestTime;
 
