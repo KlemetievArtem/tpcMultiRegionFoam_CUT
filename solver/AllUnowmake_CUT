@@ -1,0 +1,13 @@
+#!/bin/sh
+cd ${0%/*} || exit 1    # run from this directory
+set -x
+
+wmake immiscibleIncompressibleTwoPhaseMixtureCond
+wmake incompressibleTwoPhaseMixtureCond
+
+wmake tpcMultiRegionFoam_CUT/field
+wmake tpcMultiRegionFoam_CUT/phaseChangeTwoPhaseMixtureCond
+wmake tpcMultiRegionFoam_CUT
+
+
+# ----------------------------------------------------------------- end-of-file

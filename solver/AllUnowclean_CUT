@@ -1,0 +1,12 @@
+#!/bin/sh
+cd ${0%/*} || exit 1    # run from this directory
+set -x
+
+wclean immiscibleIncompressibleTwoPhaseMixtureCond
+wclean incompressibleTwoPhaseMixtureCond
+
+wclean tpcMultiRegionFoam_CUT/field
+wclean tpcMultiRegionFoam_CUT/phaseChangeTwoPhaseMixtureCond
+wclean tpcMultiRegionFoam_CUT
+
+# ----------------------------------------------------------------- end-of-file
