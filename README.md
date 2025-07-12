@@ -37,14 +37,13 @@ Model from [Da Riva,2009](https://asmedigitalcollection.asme.org/MNHT/proceeding
 If using the LCA condensation model or concepts from this repository leads to publication, please cite: [Minko, Artemov, Klementiev 2022](https://link.springer.com/article/10.1134/S0040601523030059) 
 Further refinement of the solver is welcome (especially turbulence model)!
 
-## Installation
+## Getting Started
 
-🟡
 For installation, the [OpenFOAM 6 libraries](https://github.com/OpenFOAM/OpenFOAM-6) have to be loaded. 
 
-All necessary applications for the solver installation can be installed and uninstalled by the supplied [Allwmake](https://github.com/ThomasKleiner/tpcMultiRegionFoam/tree/master/solver/Allwmake) and [Allwclean](https://github.com/ThomasKleiner/tpcMultiRegionFoam/tree/master/solver/Allwclean) shell scripts, respectively. The scripts are located in the [solver](https://github.com/ThomasKleiner/tpcMultiRegionFoam/tree/master/solver) folder.
+All necessary applications for the solver installation can be installed and uninstalled by the supplied [Allwmake](https://github.com/KlemetievArtem/tpcMultiRegionFoam/blob/master/solver/Allwmake) and [Allwclean](https://github.com/KlemetievArtem/tpcMultiRegionFoam/blob/master/solver/Allwclean) shell scripts, respectively. The scripts are located in the [solver](https://github.com/ThomasKleiner/tpcMultiRegionFoam/tree/master/solver) folder.
 
-Copy the content of the solver directory in your desired user applications folder and run the [Allwmake](https://github.com/ThomasKleiner/tpcMultiRegionFoam/tree/master/solver/Allwmake) script.
+Copy the content of the solver directory in your desired user applications folder and run the [Allwmake](https://github.com/KlemetievArtem/tpcMultiRegionFoam/blob/master/solver/Allwmake) script.
 ```
 Working folder:/home/<user>/OpenFOAM/<user>-6/applications
         
@@ -53,25 +52,18 @@ $ cd solver
 $ chmod 700 Allw*
 $ ./Allwmake
 ```
-🟡
 
 ## Provided Test Cases
+Two test cases, are provided
 
-🟡
-Two test cases, a 2D and a 3D test case, are provided for a transient simulation of pure substance condensation on a horizontal tube. 
-Two regions are considered in both simulations. One solid region for the tube and one fluid region for the two phase system. Both Regions are thermally coupled at the outer tube wall. A constant heat flux is withdrawn from the inner wall of the Tube. The initial state of the simulation consists of a pure vapor phase at saturation conditions with a temperature of 309.15 K (*n*-pentane, 1.013 bar). The initial tube temperature is also set to 309.15 K.
+# Stefan proplem
 
-In the first couple of time steps, the tube is cooling down and no condensate is formed until the temperature change reaches the outer tube wall. Condensate is formed, as soon as a temperature decrease below saturation conditions would occur in the fluid region.  
-Since a very thin condensate film is formed within the simulations, high computational effort is necessary for a very good quantitative agreement with measurements. Since we aim to give an insight in the simulation set up with the provided test cases, they have a lower mesh resolution and a higher time step size compared to the simulations published in  ([Kleiner 2019](https://www.sciencedirect.com/science/article/pii/S0017931018353055)). 
-🟡
+<img width="988" height="580" alt="Stefane" src="https://github.com/user-attachments/assets/74d0dbc7-b8e5-4574-95fa-a604d701a639" />
 
-### 2D-Simulation of pure substance film condensation on a horizontal smooth tube
-The presented results of the 2D simulation shows the tube’s temperature field in the rainbow scale and the fluid’s volume phase fraction field in the grey scale. 
-
-In the beginning of the simulation, the tube temperature decreases and an initial condensate film is formed. Afterwards a drop is formed at the bottom of the tube, which eventually drips off. The simulation reaches a state, where condensate drips off periodically. The increase in thermal resistance due to the condensate film can be observed at the lower part of the tube, where the changes in the temperature field stand in accordance with the drip-off frequency.
-
+# 2D-Simulation of pure substance film condensation on a horizontal smooth tube
 ![droplet_new](https://github.com/user-attachments/assets/d43b097b-2e4e-4778-8966-558e311556b7)
 
+The increase of vapor velocity intensify heat transfer in accordance with experiment.
 
 ## Сonducted simulations
 ### 2D-Simulation of moving pure substance film condensation on a horizontal smooth tube
