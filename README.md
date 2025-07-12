@@ -1,22 +1,29 @@
 # (IN PROCESS)
 
 # tpcMultiRegionFoam_CUT &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;&nbsp;
-tpcMultiRegionFoamCUT solver is modification of [tpcMultiRegionFoam](https://github.com/ThomasKleiner/tpcMultiRegionFoam) with added condensation models, turbulence model, post-processing functions, and fixes
+tpcMultiRegionFoamCUT solver is modification of [tpcMultiRegionFoam](https://github.com/ThomasKleiner/tpcMultiRegionFoam) solver with:
 
+ - Advanced condensation models
+ - Turbulence modeling
+ - Post-processing functions
+ - Various improvements and fixes
+
+
+
+with added condensation models, turbulence model, post-processing functions, and other fixes.
+tpcMultiRegionFoamCUT is CFD Solver for heat transfer simulations between solid and fluid regions with implemented models for thermal phase change of pure substances in fluid regions (Lee model - LC; Kleiner, Rehfeldt, Klein model - KRK; Lee model with AUTOMATIC constant calculation (Minko model) - LCA), turbulence model in vapor phase and calculation of wallHeatFluxes on patches. 
+Algorithm is validated ans verified for Stefan proplem, vapor condensation on vertical plane and horizontal cylinder surfaces and moving vapor condensation on horizontal cylinder.
 
  ![itf](https://github.com/user-attachments/assets/2e6c9155-2388-4bb3-9853-0c021b6443c3)
-
-CFD Solver for heat transfer simulations between solid and fluid regions with implemented models for thermal phase change of pure substances in fluid regions (Lee model - LC; Kleiner, Rehfeldt, Klein model - KRK; Lee model with AUTOMATIC constant calculation (Minko model) - LCA), turbulence model in vapor phase and calculation of wallHeatFluxes on patches. 
-Algorithm is tested and validated for Stefan proplem, vapor condensation on vertical plane and horizontal cylinder and moving vapor condensation.
 
 [National Research University "Moscow Power Engineering Institute"](https://mpei.ru/lang/en/Pages/default.aspx), [Dept. of Engineering Thermophysics named after Vladimir Kirillin​](https://thermophys.ru/)
 
 
-        © 2024 Artem Klementiev, Konstantin Minko
+        © 2025 Artem Klementiev, Konstantin Minko
 
 ## Description
 Curent OpenFOAM solver is modification of CFD solver [tpcMultiRegionFoam](https://github.com/ThomasKleiner/tpcMultiRegionFoam), first presented and validated in the article [Kleiner 2019](https://www.sciencedirect.com/science/article/pii/S0017931018353055).
-CFD solver was further modified with adding of different condnsation models (models for thermal phase change of pure substances):
+CFD solver was further modified with different condnsation models (models for thermal phase change of pure substances):
 1. LC: first published in [Lee 1980](https://www.scopus.com/pages/publications/84876465720);
 2. KRK: first published in [Kleiner 2019](https://www.sciencedirect.com/science/article/pii/S0017931018353055);
 3. LCA: first published in [Minko, Artemov, Klementiev 2022](https://link.springer.com/article/10.1134/S0040601523030059).
@@ -24,7 +31,7 @@ CFD solver was further modified with adding of different condnsation models (mod
 Linearization of (condensation) source term in energy conservation equation is performed.
 For turbulence calculation model from [Da Riva,2009](https://asmedigitalcollection.asme.org/MNHT/proceedings/MNHMT2009/43901/139/334977) for dampenning turbulence in condensate phase is implemented.
 
-Cross-verification of LCA condenstion model perfermed in [Minko, Artemov, Klementiev 2025](). 
+Cross-verification of LCA condenstion model using OpenFOAM, Ansys Fluent and ANES perfermed in [Minko, Artemov, Klementiev 2025](). 
 If simulations with LCA condensation model from this solver or ideas deducted from this repository lead to a further publication, the before mentioned article [Minko, Artemov, Klementiev 2022](https://link.springer.com/article/10.1134/S0040601523030059) should be cited.
 
 Further refinement of the solver is welcome (especially turbulence model)!
