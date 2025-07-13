@@ -43,9 +43,9 @@ Further refinement of the solver is welcome (especially turbulence model)!
 
 For installation, the [OpenFOAM 6 libraries](https://github.com/OpenFOAM/OpenFOAM-6) have to be loaded. 
 
-All necessary applications for the solver installation can be installed and uninstalled by the supplied [AllUnowmake_CUT](https://github.com/KlemetievArtem/tpcMultiRegionFoam/blob/master/solver/Allwmake) and [AllUnowclean_CUT](https://github.com/KlemetievArtem/tpcMultiRegionFoam/blob/master/solver/Allwclean) shell scripts, respectively. The scripts are located in the [solver](https://github.com/ThomasKleiner/tpcMultiRegionFoam/tree/master/solver) folder.
+All necessary applications for the solver installation can be installed and uninstalled by the supplied [AllUnowmake_CUT](https://github.com/KlemetievArtem/tpcMultiRegionFoam_CUT/blob/main/solver/AllUnowmake_CUT) and [AllUnowclean_CUT](https://github.com/KlemetievArtem/tpcMultiRegionFoam_CUT/blob/main/solver/AllUnowclean_CUT) shell scripts, respectively. The scripts are located in the [solver](https://github.com/KlemetievArtem/tpcMultiRegionFoam_CUT/blob/main/solver) folder.
 
-Copy the content of the solver directory in your desired user applications folder and run the [AllUnowmake_CUT](https://github.com/KlemetievArtem/tpcMultiRegionFoam/blob/master/solver/Allwmake) script.
+Copy the content of the solver directory in your desired user applications folder and run the [AllUnowmake_CUT](https://github.com/KlemetievArtem/tpcMultiRegionFoam_CUT/blob/main/solver/AllUnowclean_CUT) script.
 ```
 Working folder:/home/<user>/OpenFOAM/<user>-6/applications
         
