@@ -58,18 +58,21 @@ $ ./AllUnowmake_CUT
 ## Provided Test Cases
 Two test cases, are provided
 
-# Stefan proplem
+### Stefan proplem
 
 ![Stepfan](https://github.com/KlemetievArtem/tpcMultiRegionFoam_CUT/blob/main/fig_vid/Stefane.png)
 
-# 2D-Simulation of pure substance film condensation on a horizontal smooth tube
+### 2D-Simulation of pure substance film condensation on a horizontal smooth tube
 ![droplet_new](https://github.com/KlemetievArtem/tpcMultiRegionFoam_CUT/blob/main/fig_vid/droplet_new.gif)
 
-The increase of vapor velocity intensify heat transfer in accordance with experiment.
 
 ## Сonducted simulations
+### Comparison of 2D and 3D cases
+![3D_2D](https://github.com/KlemetievArtem/tpcMultiRegionFoam_CUT/blob/main/fig_vid/3D_2D.png)
+
 ### 2D-Simulation of moving pure substance film condensation on a horizontal smooth tube
 
+The increase of vapor velocity intensify heat transfer in accordance with experiment.
 ![U_2_4_6](https://github.com/KlemetievArtem/tpcMultiRegionFoam_CUT/blob/main/fig_vid/U_2_4_6_pink2.gif)
 
 
