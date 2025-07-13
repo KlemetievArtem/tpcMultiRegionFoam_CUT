@@ -68,6 +68,9 @@ Two test cases, are provided
 
 ## Сonducted simulations
 ### Comparison of 2D and 3D cases
+
+The dynamics of droplet detachment obtained from the results of 2D and 3D numerical modeling differ. 
+However, the averaged value of the heat transfer coefficient on cylinder is practically identical in the compared cases.
 ![3D_2D](https://github.com/KlemetievArtem/tpcMultiRegionFoam_CUT/blob/main/fig_vid/3D_2D.png)
 
 ### 2D-Simulation of moving pure substance film condensation on a horizontal smooth tube
@@ -77,6 +80,8 @@ The increase of vapor velocity intensify heat transfer in accordance with experi
 
 
 ### 2D-Simulation of pure substance film condensation on a horizontal smooth tubes bundle
+
+Condensation on a tube bundle segment can be modeled numerically
 ![Briggs_Uv04_U_OF](https://github.com/KlemetievArtem/tpcMultiRegionFoam_CUT/blob/main/fig_vid/Briggs_Uv04_U_OF.gif)
 
 ## Contributing
