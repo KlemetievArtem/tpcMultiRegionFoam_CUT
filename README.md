@@ -65,7 +65,7 @@ Two test cases, are provided
 ### 2D-Simulation of pure substance film condensation on a horizontal smooth tube
 ![droplet_new](https://github.com/KlemetievArtem/tpcMultiRegionFoam_CUT/blob/main/fig_vid/droplet_new.gif)
 
-(if calcEntry error is accured it is recommended to instal OpenFOAM using latest [ThirdParty pack](https://openfoam.org/download/source/) but stick to OpenFOAM-6 )
+(if calcEntry error is accured it is recommended to instal OpenFOAM using latest [ThirdParty pack](https://openfoam.org/download/source/) but stick to OpenFOAM version 6)
 
 ## Сonducted simulations
 ### Comparison of 2D and 3D cases
