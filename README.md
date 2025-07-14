@@ -37,7 +37,6 @@ Model from [Da Riva,2009](https://asmedigitalcollection.asme.org/MNHT/proceeding
 
 # Citing This Work
 If using the LCA condensation model or concepts from this repository leads to publication, please cite: [Minko, Artemov, Klementiev 2022](https://link.springer.com/article/10.1134/S0040601523030059) 
-Further refinement of the solver is welcome (especially turbulence model)!
 
 ## Getting Started
 
@@ -65,7 +64,7 @@ Two test cases, are provided
 ### 2D-Simulation of pure substance film condensation on a horizontal smooth tube
 ![droplet_new](https://github.com/KlemetievArtem/tpcMultiRegionFoam_CUT/blob/main/fig_vid/droplet_new.gif)
 
-(if calcEntry error is accured it is recommended to instal OpenFOAM using latest [ThirdParty pack](https://openfoam.org/download/source/) but stick to OpenFOAM version 6)
+(if calcEntry error is accured it is recommended to instal OpenFOAM using latest [ThirdParty pack](https://openfoam.org/download/source/) but stick to OpenFOAM version 6 or try [this](https://github.com/OpenFOAM/OpenFOAM-9/commit/b0c15bebd37142f3902901ed5e9a60e33ed456eb) fix)
 
 ## Сonducted simulations
 ### Comparison of 2D and 3D cases
