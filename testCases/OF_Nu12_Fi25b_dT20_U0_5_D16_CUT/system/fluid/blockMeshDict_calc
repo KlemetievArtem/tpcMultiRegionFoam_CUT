@@ -20,63 +20,63 @@ convertToMeters 0.001;
 TubeD 12.5000;
 NusseltFilmTchikness .05538255350748952000;
 
-TubeDiag 4.419417382;
-NusseltFilmD 12.518460851;
-NusseltFilmDiag 4.425944279;
-FilmD 12.610765107;
-FilmDiag 4.458578762;
-OuterD 16.25;
-OuterDiag 5.745242597;
+TubeDiag #calc "sqrtf(sqr($TubeD/2.0)/2.0)";
+NusseltFilmD #calc "$TubeD+2.0/6*$NusseltFilmTchikness";
+NusseltFilmDiag #calc "sqrtf(sqr($NusseltFilmD/2.0)/2.0)";
+FilmD #calc "$TubeD+2.0*$NusseltFilmTchikness";
+FilmDiag #calc "sqrtf(sqr($FilmD/2.0)/2.0)";
+OuterD #calc "1.3*$TubeD";
+OuterDiag #calc "sqrtf(sqr($OuterD/2.0)/2.0)";
 
 Xbeg 0;
 Xend 80.0; // 250
-Xmid 40.0;
-Xmid_m_Tube 35.580582618; // 118.264808;
-Xmid_m_NuFilm 35.574055721; // 116.161165;
-Xmid_m_Film 35.541421238;
-Xmid_m_Outer 34.254757403;
+Xmid #calc "$Xend/2.0";
+Xmid_m_Tube #calc "$Xmid-$TubeDiag"; // 118.264808;
+Xmid_m_NuFilm #calc "$Xmid-$NusseltFilmDiag"; // 116.161165;
+Xmid_m_Film #calc "$Xmid-$FilmDiag";
+Xmid_m_Outer #calc "$Xmid-$OuterDiag";
 
-Xmid_p_Tube 44.419417382; // 131.735192;
-Xmid_p_NuFilm 44.425944279; // 133.838835;
-Xmid_p_Film 44.458578762;
-Xmid_p_Outer 45.745242597;
+Xmid_p_Tube #calc "$Xmid+$TubeDiag"; // 131.735192;
+Xmid_p_NuFilm #calc "$Xmid+$NusseltFilmDiag"; // 133.838835;
+Xmid_p_Film #calc "$Xmid+$FilmDiag";
+Xmid_p_Outer #calc "$Xmid+$OuterDiag";
 
 Ybeg 0;
 Yend 120.0; //250
 Ymid 80.0; //250
 
-Ymid_m_Tube 75.580582618; // 118.264808; //29.921825; // 
-Ymid_m_NuFilm 75.574055721; // 116.161165; // 
-Ymid_m_Film 75.541421238;
-Ymid_m_Outer 74.254757403;
+Ymid_m_Tube #calc "$Ymid-$TubeDiag"; // 118.264808; //29.921825; // 
+Ymid_m_NuFilm #calc "$Ymid-$NusseltFilmDiag"; // 116.161165; // 
+Ymid_m_Film #calc "$Ymid-$FilmDiag";
+Ymid_m_Outer #calc "$Ymid-$OuterDiag";
 
-Ymid_p_Tube 84.419417382; // 131.735192; //45.478175; // 
-Ymid_p_NuFilm 84.425944279; // 133.838835; // 
-Ymid_p_Film 84.458578762;
-Ymid_p_Outer 85.745242597;
+Ymid_p_Tube #calc "$Ymid+$TubeDiag"; // 131.735192; //45.478175; // 
+Ymid_p_NuFilm #calc "$Ymid+$NusseltFilmDiag"; // 133.838835; // 
+Ymid_p_Film #calc "$Ymid+$FilmDiag";
+Ymid_p_Outer #calc "$Ymid+$OuterDiag";
 
 Zbeg 0;
 Zend 0.01; // 250
 
-Arc_Bot_TubeD 73.75;
-Arc_Bot_NusseltFilmD 73.740769574;
-Arc_Bot_FilmD 73.694617446;
-Arc_Bot_OuterD 71.875;
+Arc_Bot_TubeD #calc "$Ymid-$TubeD/2.0";
+Arc_Bot_NusseltFilmD #calc "$Ymid-$NusseltFilmD/2.0";
+Arc_Bot_FilmD #calc "$Ymid-$FilmD/2.0";
+Arc_Bot_OuterD #calc "$Ymid-$OuterD/2.0";
 
-Arc_Right_TubeD 46.25;
-Arc_Right_NusseltFilmD 46.259230426;
-Arc_Right_FilmD 46.305382554;
-Arc_Right_OuterD 48.125;
+Arc_Right_TubeD #calc "$Xmid+$TubeD/2.0";
+Arc_Right_NusseltFilmD #calc "$Xmid+$NusseltFilmD/2.0";
+Arc_Right_FilmD #calc "$Xmid+$FilmD/2.0";
+Arc_Right_OuterD #calc "$Xmid+$OuterD/2.0";
 
-Arc_Top_TubeD 86.25;
-Arc_Top_NusseltFilmD 86.305382554;
-Arc_Top_FilmD 86.305382554;
-Arc_Top_OuterD 88.125;
+Arc_Top_TubeD #calc "$Ymid+$TubeD/2.0";
+Arc_Top_NusseltFilmD #calc "$Ymid+$NusseltFilmD/2.0";
+Arc_Top_FilmD #calc "$Ymid+$FilmD/2.0";
+Arc_Top_OuterD #calc "$Ymid+$OuterD/2.0";
 
-Arc_Left_TubeD 33.75;
-Arc_Left_NusseltFilmD 33.740769574;
-Arc_Left_FilmD 33.694617446;
-Arc_Left_OuterD 31.875;
+Arc_Left_TubeD #calc "$Xmid-$TubeD/2.0";
+Arc_Left_NusseltFilmD #calc "$Xmid-$NusseltFilmD/2.0";
+Arc_Left_FilmD #calc "$Xmid-$FilmD/2.0";
+Arc_Left_OuterD #calc "$Xmid-$OuterD/2.0";
 
 vertices
 (    
@@ -150,13 +150,13 @@ CV_Fi_Top 150;
 CV_Fi_Left 150;
 CV_Fi_Right 100;
 
-CV_ExpRate_Right 1;
-CV_ExpRate_Left 1;
-CV_ExpRate_Left_r 1;
-CV_ExpRate_Top 5;
-CV_ExpRate_Top_r 0.2;
-CV_ExpRate_Bot 1;
-CV_ExpRate_Bot_r 1;
+CV_ExpRate_Right 1; //0.498;
+CV_ExpRate_Left 1; //0.498;
+CV_ExpRate_Left_r 1;\#calc "1.0/$CV_ExpRate_Left ";
+CV_ExpRate_Top 5; //0.295;
+CV_ExpRate_Top_r #calc "1.0/$CV_ExpRate_Top ";
+CV_ExpRate_Bot 1; //0.909;
+CV_ExpRate_Bot_r 1;\#calc "1.0/$CV_ExpRate_Bot ";
 
 
 
@@ -176,8 +176,8 @@ CV_R #calc "6-1 ";
 CV_R_Outer #calc "83-6 ";
 CV_R_Film_Ratio 1.126162419264 ; //#calc " std::pow($MinkoLogRate_Film,($CV_R - 1)) ";
 CV_R_Outer_Ratio 4.998047563550684 ; //#calc " std::pow($MinkoLogRate_Outer,($CV_R_Outer - 1)) ";
-CV_R_Outer_Ratio_r 0.887971382;
-CV_R_Film_Ratio_r 0.200078128;
+CV_R_Outer_Ratio_r #calc "1.0/$CV_R_Outer_Ratio ";
+CV_R_Film_Ratio_r #calc "1.0/$CV_R_Film_Ratio ";
 
 
 
@@ -185,11 +185,11 @@ CV_X_side 50;
 CV_Y_top 105;
 CV_Y_top_Ratio 20;
 CV_X_side_Ratio 40;
-CV_X_side_Ratio_r 0.025;
+CV_X_side_Ratio_r #calc "1.0/$CV_X_side_Ratio ";
 //CV_Y_bottom #calc "$CV_Y_top*$Ymid_m_Outer/($Yend-$Ymid_p_Outer) ";
 CV_Y_bottom 600;
 CV_Y_bottom_Ratio 2;
-CV_Y_bottom_Ratio_r 0.5;
+CV_Y_bottom_Ratio_r #calc "1.0/$CV_Y_bottom_Ratio ";
 
 
 blocks
