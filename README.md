@@ -32,7 +32,7 @@ Model from [Da Riva,2009](https://asmedigitalcollection.asme.org/MNHT/proceeding
  - Stefan proplem
  - vapor condensation on vertical plane
  - condensation of Stagnant or Moving vapor on horizontal cylinder
- - cross-verification of LCA condenstion model using OpenFOAM, Ansys Fluent and [ANES](http://anes.ch12655.tmweb.ru/index.php/primery) perfermed in [Minko, Artemov, Klementiev 2025](). 
+ - cross-verification of LCA condenstion model using OpenFOAM, Ansys Fluent and [ANES](http://anes.ch12655.tmweb.ru/index.php/primery) perfermed in [Minko, Artemov, Klementiev 2025](https://link.springer.com/article/10.1134/S0040601525700375). 
 
 # Citing This Work
 If using the LCA condensation model or concepts from this repository leads to publication, please cite: [Minko, Artemov, Klementiev 2022](https://link.springer.com/article/10.1134/S0040601523030059) 
@@ -98,4 +98,4 @@ Please submit pull requests or open issues to discuss potential enhancements.
 * Lee Wen, A pressure iteration scheme for two-phase flow modeling, Multiphase Transport: Fundamentals, Reactor Safety, Applications, 1980, pp. 407–431
 * K.B. Minko, V. I. Artemov, A.A. Klementiev, Simulation of Condensation of Stagnant or Moving Saturated Vapor on a Horizontal Tube Using the Volume-of-Fluid (VOF) Method, Thermal Engineering 2023, 70(3), 175-193, [https://link.springer.com/article/10.1134/S0040601523030059](https://link.springer.com/article/10.1134/S0040601523030059).
 * Da Riva, Del Col, Numerical Simulation of Condensation in a Minichannel, Proceedings of the ASME 2009 Second International Conference on Micro/Nanoscale Heat and Mass Transfer. ASME 2009 Second International Conference on Micro/Nanoscale Heat and Mass Transfer, Volume 2. Shanghai, China. December 18–21, 2009. pp. 139-145. ASME, [https://asmedigitalcollection.asme.org/MNHT/proceedings-abstract/MNHMT2009/43901/139/334977](https://asmedigitalcollection.asme.org/MNHT/proceedings-abstract/MNHMT2009/43901/139/334977).
-* K.B. Minko, V. I. Artemov, A.A. Klementiev, _, Thermal Engineering 2025, _, _, [_](_).
+* A.A. Klementiev, K.B. Minko, V. I. Artemov, Cross-Verification of OpenFOAM Code with Embedded Film Condensation Models for VOF Method, Thermal Engineering 2025, 72(9), 745-759, [DOI: 10.1134/S0040601525700375](https://link.springer.com/article/10.1134/S0040601525700375).
