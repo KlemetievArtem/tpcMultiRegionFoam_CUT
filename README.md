@@ -26,6 +26,7 @@ CFD solver was further modified with different condnsation models (models for th
 3. LCA: first published in [Minko, Artemov, Klementiev 2022](https://link.springer.com/article/10.1134/S0040601523030059).
 
 Linearization of (condensation) source term in energy conservation equation is performed.
+The LCA condensation model is a modification of the most common condensation model – the Lee model. The key difference of the proposed modification is the algorithm for the a priori determination of the constant in the Lee model. In this modification, the constant is a function of the physical properties of the phases, as well as the minimal size of the current control volume (CV), i.e., this constant is a field variable. When refining the mesh model (reducing the size of the CVs), the value of the constant increases, which leads to a localization of the interphase boundary.
 # Turbulence Model
 Model from [Da Riva,2009](https://asmedigitalcollection.asme.org/MNHT/proceedings/MNHMT2009/43901/139/334977) for dampenning turbulence in condensate phase is implemented.
 # Validation and Verification
