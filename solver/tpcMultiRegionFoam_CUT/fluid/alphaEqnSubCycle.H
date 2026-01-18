@@ -36,5 +36,6 @@
     DT == alpha1Lim*DT1 + alpha2*DT2;
     Cp == alpha1Lim*Cp1  + alpha2*Cp2;
     
-    thermo.correct();
+    thermo.recalcRho(rho);
+    thermo.recalcMu(mixture.mu());
 }
